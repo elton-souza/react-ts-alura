@@ -1,6 +1,15 @@
+import { ReactChild } from "react";
 import style from "./Button.module.scss";
-function Button(props:any) {
-  return <button className={style.botao}>{props.children}</button>;
+interface ButtonProps {
+  type?: "button" | "submit" | "reset" | undefined;
+  children: ReactChild;
+}
+function Button({ type, children }: ButtonProps) {
+  return (
+    <button type={type} className={style.botao}>
+      {children}
+    </button>
+  );
 }
 
 export default Button;
