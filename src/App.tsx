@@ -23,7 +23,7 @@ function App() {
     <div className={style.AppStyle}>
       <Form setTask={setTask} />
       <List tasks={task} selectTask={selectTask} />
-      <StopWatch />
+      <StopWatch selected={selected} />
     </div>
   );
 }
