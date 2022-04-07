@@ -7,14 +7,24 @@ import style from "./StopWatch.module.scss";
 
 interface Props {
   selected: Task | undefined;
-}
-export interface Time {
-  hourInSeconds: string;
-  seconds: string;
+  handleSelected: () => void;
 }
 
-export default function StopWatch({ selected }: Props) {
-  const [time, setTime] = useState<Time>({ hourInSeconds: "00", seconds: "00" });
+export default function StopWatch({ selected, handleSelected }: Props) {
+  const [time, setTime] = useState<number>(0);
+  const [enableButton, setEnableButton] = useState<boolean>(false);
+
+  const startStopWatch = (stateTime: number) => {
+    setTimeout(() => {
+      if (stateTime > 0) {
+        setTime(stateTime - 1);
+        startStopWatch(stateTime - 1);
+      } else {
+        handleSelected();
+        setEnableButton(false);
+      }
+    }, 1000);
+  };
 
   useEffect(() => {
     if (selected) {
@@ -22,13 +32,19 @@ export default function StopWatch({ selected }: Props) {
     }
   }, [selected]);
 
+  useEffect(() => {
+    setEnableButton(true);
+  }, [time]);
+
   return (
     <div className={style.cronometro}>
       <p className={style.titulo}> Escolha um card e inicie o cronômetro </p>
       <div className={style.relogioWrapper}>
         <Clock time={time} />
       </div>
-      <Button>Começar!</Button>
+      <Button handleTime={() => enableButton && startStopWatch(time)}>
+        Começar!
+      </Button>
     </div>
   );
 }

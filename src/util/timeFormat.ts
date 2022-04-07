@@ -4,11 +4,7 @@ const timeFormat = (time: string = "") => {
   const minuteFormated = Number(minute) * 60;
   const secondFormated = Number(second);
 
-  const hourInSeconds = String(Math.floor((hourFormated + minuteFormated + secondFormated) / 60)) ;
-  const seconds = String((hourFormated + minuteFormated + secondFormated) % 60)
-
-  return { hourInSeconds, seconds}
-  
+  return hourFormated + minuteFormated + secondFormated;
 };
 
 export default timeFormat;

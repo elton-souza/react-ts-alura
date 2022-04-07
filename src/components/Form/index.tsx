@@ -9,8 +9,6 @@ interface Props {
 function Form({ setTask }: Props) {
   const [title, setTitle] = useState("");
   const [time, setTime] = useState("00:00");
-  const [complete, setComplete] = useState(false);
-  const [selected, setSelected] = useState(false);
 
   const handleCreateTask = (event: FormEvent) => {
     event.preventDefault();
@@ -20,8 +18,8 @@ function Form({ setTask }: Props) {
         id: uuidv4(),
         title: title,
         time: time,
-        selected: selected,
-        complete: complete,
+        selected: false,
+        complete: false,
       },
     ]);
     setTitle("");

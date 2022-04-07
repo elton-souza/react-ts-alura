@@ -1,12 +1,12 @@
-import { Time } from "..";
 import style from "./Clock.module.scss";
 
 interface Props {
-  time: Time;
+  time: number;
 }
 export default function Clock({ time }: Props) {
-  const [startHour, endHour] = time?.hourInSeconds.padStart(2, "0");
-  const [startSecond, endSecond] = time?.seconds.padStart(2, "0");
+  const [startHour, endHour] = String(Math.floor(time / 60)).padStart(2, "0");
+  const [startSecond, endSecond] = String(time % 60).padStart(2, "0");
+
   return (
     <>
       <span className={style.relogioNumero}>{startHour}</span>

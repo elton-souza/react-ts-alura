@@ -1,12 +1,12 @@
-import { ReactChild } from "react";
 import style from "./Button.module.scss";
 interface ButtonProps {
   type?: "button" | "submit" | "reset" | undefined;
-  children: ReactChild;
+  children: React.ReactNode;
+  handleTime?: () => void;
 }
-function Button({ type, children }: ButtonProps) {
+function Button({ type, children, handleTime }: ButtonProps) {
   return (
-    <button type={type} className={style.botao}>
+    <button type={type} className={style.botao} onClick={handleTime} >
       {children}
     </button>
   );

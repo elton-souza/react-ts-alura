@@ -8,19 +8,18 @@ interface Props extends Task {
 function Item({ title, time, id, complete, selected, selectTask }: Props) {
   return (
     <li
-      className={`${style.item} ${selected ? style.itemSelecionado : ""}`}
-      onClick={() =>
-        selectTask({
-          title,
-          time,
-          complete,
-          selected: true,
-          id,
-        })
-      }
+      className={`${style.item} ${selected ? style.itemSelecionado : ""} ${ complete ? style.itemCompletado : ""}`}
+      onClick={() => !complete && selectTask({
+        title,
+        time,
+        complete,
+        selected: true,
+        id,
+      })}
     >
       <h3>{title}</h3>
       <span>{time}</span>
+      {complete && <span className={style.concluido} aria-label="tarefa completada"></span>}
     </li>
   );
 }

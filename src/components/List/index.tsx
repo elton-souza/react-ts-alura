@@ -11,11 +11,15 @@ function List({ tasks, selectTask }: Props) {
   return (
     <aside className={style.listaTarefas}>
       <h2>Estudos do dia</h2>
-      <ul>
+      {tasks.length > 0 ? (
+        <ul>
         {tasks?.map( task => (
           <Item key={task.id} {...task} selectTask={selectTask}/>
         ))}
       </ul>
+      ) : (
+        <span>Sem estudos adicionados :(</span>
+      )}
     </aside>
   );
 }
